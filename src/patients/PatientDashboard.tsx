@@ -6,6 +6,7 @@ import Appointments from './Appointments'
 import MedicalRecords from './MedicalRecords'
 import Prescriptions from './Prescriptions'
 import LabResults from './LabResults'
+import Billing from './Billing'
 import './patients.css'
 
 type PatientDashboardProps = {
@@ -39,12 +40,14 @@ function PatientDashboard({ onSignOut }: PatientDashboardProps) {
           {page === 'records' && <MedicalRecords />}
           {page === 'prescriptions' && <Prescriptions />}
           {page === 'labs' && <LabResults />}
+          {page === 'billing' && <Billing />}
           {![
             'dashboard',
             'appointments',
             'records',
             'prescriptions',
             'labs',
+            'billing',
           ].includes(page) && (
             <>
               <h1 className="pt-greeting">{PLACEHOLDER_TITLES[page]}</h1>

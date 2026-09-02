@@ -1,7 +1,11 @@
+export type Role = 'patient' | 'doctor'
+
 export type Account = {
   email: string
   password: string
   name?: string
+  /** Which dashboard to show after login. Defaults to 'patient' when omitted. */
+  role?: Role
 }
 
 /**
@@ -16,10 +20,12 @@ function loadAccounts(): Account[] {
   try {
     const parsed = JSON.parse(raw)
     if (!Array.isArray(parsed)) return []
-    return parsed.filter(
-      (a): a is Account =>
-        a && typeof a.email === 'string' && typeof a.password === 'string',
-    )
+    return parsed
+      .filter(
+        (a): a is Account =>
+          a && typeof a.email === 'string' && typeof a.password === 'string',
+      )
+      .map((a) => ({ ...a, role: a.role === 'doctor' ? 'doctor' : 'patient' }))
   } catch {
     console.warn('[auth] VITE_AUTH_USERS is not valid JSON — ignoring it.')
     return []

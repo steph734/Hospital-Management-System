@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import LuminaLogo from './components/LuminaLogo'
 import HealthcareTeam from './components/HealthcareTeam'
 import PasswordField from './components/PasswordField'
-import { ACCOUNTS, verifyCredentials } from './auth'
+import { ACCOUNTS, verifyCredentials, type Account } from './auth'
 import './Login.css'
 
 type Fields = {
@@ -14,8 +14,8 @@ type Fields = {
 type LoginProps = {
   /** Switch to the sign-up view. */
   onSwitch?: () => void
-  /** Called after the form passes validation. */
-  onSuccess?: () => void
+  /** Called with the matched account after the form passes validation. */
+  onSuccess?: (account: Account) => void
 }
 
 const EMPTY: Fields = { email: '', password: '', confirmPassword: '' }
@@ -69,7 +69,7 @@ function Login({ onSwitch, onSuccess }: LoginProps) {
 
     setFormError(null)
     console.log('Signed in as', account.name ?? account.email)
-    onSuccess?.()
+    onSuccess?.(account)
   }
 
   return (
