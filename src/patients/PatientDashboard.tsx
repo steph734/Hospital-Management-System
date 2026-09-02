@@ -3,6 +3,9 @@ import PatientSidebar, { type NavKey } from './PatientSidebar'
 import PatientTopbar from './PatientTopbar'
 import DashboardHome from './DashboardHome'
 import Appointments from './Appointments'
+import MedicalRecords from './MedicalRecords'
+import Prescriptions from './Prescriptions'
+import LabResults from './LabResults'
 import './patients.css'
 
 type PatientDashboardProps = {
@@ -33,7 +36,16 @@ function PatientDashboard({ onSignOut }: PatientDashboardProps) {
         <main className="pt-content">
           {page === 'dashboard' && <DashboardHome />}
           {page === 'appointments' && <Appointments />}
-          {page !== 'dashboard' && page !== 'appointments' && (
+          {page === 'records' && <MedicalRecords />}
+          {page === 'prescriptions' && <Prescriptions />}
+          {page === 'labs' && <LabResults />}
+          {![
+            'dashboard',
+            'appointments',
+            'records',
+            'prescriptions',
+            'labs',
+          ].includes(page) && (
             <>
               <h1 className="pt-greeting">{PLACEHOLDER_TITLES[page]}</h1>
               <p className="pt-greeting-sub">This section is coming soon.</p>

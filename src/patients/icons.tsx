@@ -21,6 +21,15 @@ export type IconName =
   | 'chevronLeft'
   | 'chevronRight'
   | 'pin'
+  | 'download'
+  | 'image'
+  | 'alert'
+  | 'user'
+  | 'chart'
+  | 'phone'
+  | 'warning'
+  | 'flask'
+  | 'chevronDown'
 
 const PATHS: Record<IconName, ReactNode> = {
   grid: (
@@ -104,6 +113,57 @@ const PATHS: Record<IconName, ReactNode> = {
       <circle cx="12" cy="10" r="3" />
     </>
   ),
+  download: (
+    <>
+      <path d="M12 3v12" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 21h14" />
+    </>
+  ),
+  image: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="9" cy="9" r="2" />
+      <path d="m21 15-5-5L6 20" />
+    </>
+  ),
+  alert: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7.5v5.5" />
+      <path d="M12 16.5h.01" />
+    </>
+  ),
+  user: (
+    <>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4 4-6.5 8-6.5s8 2.5 8 6.5" />
+    </>
+  ),
+  chart: (
+    <>
+      <path d="M3 17 9 11l4 4 8-8" />
+      <path d="M15 7h6v6" />
+    </>
+  ),
+  phone: (
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.18 4.18 2 2 0 0 1 4.18 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.02-1.02a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0 1 22 16.92Z" />
+  ),
+  warning: (
+    <>
+      <path d="M12 3 2 20h20L12 3Z" />
+      <path d="M12 10v4" />
+      <path d="M12 17.5h.01" />
+    </>
+  ),
+  flask: (
+    <>
+      <path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2" />
+      <path d="M6.453 15h11.094" />
+      <path d="M8.5 2h7" />
+    </>
+  ),
+  chevronDown: <path d="m6 9 6 6 6-6" />,
 }
 
 type IconProps = {
