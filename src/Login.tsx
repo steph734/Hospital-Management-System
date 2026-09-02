@@ -2,28 +2,34 @@ import { useState, type FormEvent } from 'react'
 import LuminaLogo from './components/LuminaLogo'
 import HealthcareTeam from './components/HealthcareTeam'
 import PasswordField from './components/PasswordField'
+import { ACCOUNTS, verifyCredentials } from './auth'
 import './Login.css'
 
 type Fields = {
   email: string
   password: string
+  confirmPassword: string
 }
 
 type LoginProps = {
   /** Switch to the sign-up view. */
   onSwitch?: () => void
+  /** Called after the form passes validation. */
+  onSuccess?: () => void
 }
 
-const EMPTY: Fields = { email: '', password: '' }
+const EMPTY: Fields = { email: '', password: '', confirmPassword: '' }
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function Login({ onSwitch }: LoginProps) {
+function Login({ onSwitch, onSuccess }: LoginProps) {
   const [fields, setFields] = useState<Fields>(EMPTY)
   const [errors, setErrors] = useState<Partial<Fields>>({})
+  const [formError, setFormError] = useState<string | null>(null)
 
   function update(key: keyof Fields, value: string) {
     setFields((prev) => ({ ...prev, [key]: value }))
     setErrors((prev) => ({ ...prev, [key]: undefined }))
+    setFormError(null)
   }
 
   function validate(values: Fields): Partial<Fields> {
@@ -34,6 +40,11 @@ function Login({ onSwitch }: LoginProps) {
 
     if (!values.password) next.password = 'Please enter a password.'
 
+    if (!values.confirmPassword)
+      next.confirmPassword = 'Please confirm your password.'
+    else if (values.confirmPassword !== values.password)
+      next.confirmPassword = 'Passwords do not match.'
+
     return next
   }
 
@@ -42,8 +53,23 @@ function Login({ onSwitch }: LoginProps) {
     const found = validate(fields)
     setErrors(found)
     if (Object.keys(found).length > 0) return
-    // TODO: hook up to auth
-    console.log('Submit:', { email: fields.email.trim() })
+
+    if (ACCOUNTS.length === 0) {
+      setFormError(
+        'No accounts are configured. Add VITE_AUTH_USERS to my-app/.env and restart the dev server.',
+      )
+      return
+    }
+
+    const account = verifyCredentials(fields.email, fields.password)
+    if (!account) {
+      setFormError('Incorrect email or password.')
+      return
+    }
+
+    setFormError(null)
+    console.log('Signed in as', account.name ?? account.email)
+    onSuccess?.()
   }
 
   return (
@@ -83,6 +109,21 @@ function Login({ onSwitch }: LoginProps) {
               onChange={(value) => update('password', value)}
               error={errors.password}
             />
+
+            <PasswordField
+              label="Confirm Password"
+              placeholder="Re-enter your password"
+              autoComplete="current-password"
+              value={fields.confirmPassword}
+              onChange={(value) => update('confirmPassword', value)}
+              error={errors.confirmPassword}
+            />
+
+            {formError && (
+              <p className="login-error login-form-error" role="alert">
+                {formError}
+              </p>
+            )}
 
             <button type="submit" className="login-button">
               LOGIN
