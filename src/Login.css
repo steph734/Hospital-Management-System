@@ -1,0 +1,237 @@
+.login-page {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #e7f3f2 0%, #d3e9e7 100%);
+  font-family: 'Segoe UI', system-ui, Roboto, sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 48px;
+  box-sizing: border-box;
+  background: #eef6f5;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px -20px rgba(20, 90, 88, 0.28);
+}
+
+.login-art {
+  background: radial-gradient(circle at 50% 45%, #ffffff 0%, #dcefed 100%);
+  border-radius: 22px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.healthcare-team {
+  width: 100%;
+  height: auto;
+}
+
+.login-form-panel {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 44px 40px;
+  box-shadow: 0 18px 40px -16px rgba(20, 90, 88, 0.25);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lumina-logo {
+  margin-bottom: 20px;
+}
+
+.login-form h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #14322f;
+}
+
+.login-subtitle {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #7c8b8a;
+}
+
+.login-field {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.login-field span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #0f766e;
+}
+
+.login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: #14322f;
+  background: #f4faf9;
+  border: 1.5px solid #cfe4e2;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-field input::placeholder {
+  color: #a9bab8;
+}
+
+.login-field input:focus {
+  border-color: #1f8f89;
+  box-shadow: 0 0 0 4px rgba(31, 143, 137, 0.15);
+}
+
+.login-field input[aria-invalid='true'] {
+  border-color: #e5645a;
+}
+
+.password-wrap {
+  position: relative;
+  display: flex;
+}
+
+.password-wrap input {
+  padding-right: 46px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #7c8b8a;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.password-toggle:hover {
+  color: #0f766e;
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid rgba(31, 143, 137, 0.4);
+  outline-offset: 1px;
+}
+
+.login-error {
+  font-size: 12px;
+  font-style: normal;
+  color: #d5382c;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  background: #1f8f89;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.05s;
+}
+
+.login-button:hover {
+  background: #187a75;
+}
+
+.login-button:active {
+  transform: translateY(1px);
+}
+
+.login-button:focus-visible {
+  outline: 3px solid rgba(31, 143, 137, 0.4);
+  outline-offset: 2px;
+}
+
+.login-switch {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: #7c8b8a;
+}
+
+.login-link {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: #1f8f89;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  color: #187a75;
+  text-decoration: underline;
+}
+
+.login-link:focus-visible {
+  outline: 2px solid rgba(31, 143, 137, 0.4);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.login-success {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  font-size: 13px;
+  text-align: left;
+  color: #14322f;
+  background: #dff1ef;
+  border: 1.5px solid #a9d9d5;
+  border-radius: 12px;
+}
+
+@media (max-width: 820px) {
+  .login-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+
+  .login-art {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .login-form-panel {
+    padding: 32px 24px;
+  }
+}
